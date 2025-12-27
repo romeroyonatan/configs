@@ -27,7 +27,7 @@ require("lazy").setup({
     {
         "mason-org/mason-lspconfig.nvim",
         opts = {
-            ensure_installed = { "docker_language_server", "lua_ls", "rust_analyzer", "pyright", "ruff", "ty" },
+            ensure_installed = { "docker_language_server", "lua_ls", "rust_analyzer", "ty" },
         },
         dependencies = {
             { "mason-org/mason.nvim", opts = {} },
@@ -97,3 +97,13 @@ vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find f
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+vim.keymap.set('n', '<leader>h', builtin.oldfiles, { desc = 'Telescope history tags' })
+
+
+vim.diagnostic.config({
+  virtual_text = true,  -- show inline messages
+  signs = true,         -- show signs in the gutter
+  underline = true,     -- underline problematic text
+  update_in_insert = false, -- don't update diagnostics while typing
+  severity_sort = true,     -- sort diagnostics by severity
+})
