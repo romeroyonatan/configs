@@ -55,9 +55,8 @@ require("lazy").setup({
     'nvim-telescope/telescope.nvim', tag = 'v0.2.0',
      dependencies = { 'nvim-lua/plenary.nvim' }
     },
-    {
-      "tpope/vim-fugitive",
-    },
+    { "tpope/vim-fugitive" },
+    { "almo7aya/openingh.nvim" },
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
