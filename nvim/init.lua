@@ -1,3 +1,6 @@
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -57,6 +60,22 @@ require("lazy").setup({
     },
     { "tpope/vim-fugitive" },
     { "almo7aya/openingh.nvim" },
+    { "nvim-tree/nvim-tree.lua" },
+    {
+        "nvim-tree/nvim-tree.lua",
+        version = "*",
+        lazy = false,
+        dependencies = {
+          "nvim-tree/nvim-web-devicons",
+        },
+        config = function()
+          require("nvim-tree").setup({})
+        end,
+      },
+      { "catppuccin/nvim", name = "catppuccin", priority = 1000, config = function ()
+          vim.opt.termguicolors = true
+          vim.cmd("colorscheme catppuccin")
+      end }
   },
   -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
@@ -98,11 +117,14 @@ vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' 
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
 vim.keymap.set('n', '<leader>h', builtin.oldfiles, { desc = 'Telescope history tags' })
 
+vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', { silent = true })
+vim.keymap.set("n", "<leader>t", ":NvimTreeFindFile<CR>", { desc = "Reveal current file in tree" })
 
 vim.diagnostic.config({
-  virtual_text = true,  -- show inline messages
+  virtual_text = false,  -- show inline messages
   signs = true,         -- show signs in the gutter
   underline = true,     -- underline problematic text
   update_in_insert = false, -- don't update diagnostics while typing
   severity_sort = true,     -- sort diagnostics by severity
 })
+
